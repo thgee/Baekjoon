@@ -29,17 +29,17 @@ let bStart = [
   ["W", "B", "W", "B", "W", "B", "W", "B"],
 ];
 
+const countDiff = (board, x, y) => {
+  cnt = 0;
+  for (let i = 0; i < 8; i++)
+    for (let j = 0; j < 8; j++) if (board[i][j] !== arr[x + i][y + j]) cnt++;
+  res = Math.min(cnt, res);
+};
+
 for (let i = 0; i < n - 7; i++) {
   for (let j = 0; j < m - 7; j++) {
-    cnt = 0;
-    for (let k = 0; k < 8; k++)
-      for (let l = 0; l < 8; l++) if (wStart[k][l] !== arr[i + k][j + l]) cnt++;
-    res = Math.min(cnt, res);
-
-    cnt = 0;
-    for (let k = 0; k < 8; k++)
-      for (let l = 0; l < 8; l++) if (bStart[k][l] !== arr[i + k][j + l]) cnt++;
-    res = Math.min(cnt, res);
+    countDiff(wStart, i, j);
+    countDiff(bStart, i, j);
   }
 }
 
