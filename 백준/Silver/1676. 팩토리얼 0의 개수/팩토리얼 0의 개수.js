@@ -1,23 +1,19 @@
 let fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim();
-
+let n = Number(input);
 // -------------------------------------------------------------------------
 
-function factorial(n) {
-  return n ? BigInt(BigInt(n) * BigInt(factorial(n - 1))) : 1;
-}
-
-const solution = (n) => {
-  const fArr = [...factorial(n).toString()];
-  let result = 0;
-  while (true) {
-    const cur = fArr.pop();
-    if (cur === "0") {
-      result += 1;
-    } else break;
-  }
-  return result;
+const DFS = (n) => {
+  if (n === 0) return 1;
+  return BigInt(n) * BigInt(DFS(n - 1));
 };
 
-console.log(solution(Number(input)));
+let num = DFS(n);
+let cnt = 0;
+num = num.toString();
+for (let i = num.length - 1; ; i--) {
+  if (num[i] !== "0") break;
+  cnt++;
+}
+console.log(cnt);
