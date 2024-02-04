@@ -8,5 +8,5 @@ arr = arr.split(" ").map((it) => parseInt(it));
 
 let M = Math.max(...arr);
 console.log(
-  arr.map((it) => (it / M) * 100).reduce((acc, cur) => acc + cur) / arr.length
+  arr.map(it => (it / M) * 100).reduce((acc, cur) => acc + cur) / arr.length
 );
