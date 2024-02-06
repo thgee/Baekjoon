@@ -13,11 +13,12 @@ const getDisassemble = (num) => {
   return sum;
 };
 
-let res = Number.MAX_SAFE_INTEGER;
+let res = 0;
 for (let i = 1; i <= n; i++) {
   if (getDisassemble(i) === n) {
-    res = Math.min(res, i);
+    res = i;
+    break;
   }
 }
 
-console.log(res !== Number.MAX_SAFE_INTEGER ? res : 0);
+console.log(res);
