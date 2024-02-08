@@ -4,15 +4,13 @@ let input = fs.readFileSync(filePath).toString().trim().split("\n");
 input.shift();
 
 // ------------------------------------------------------------------
+let r = 1,
+  sum = 0,
+  m = 1234567891;
 for (let i = 0; i < input[0].length; i++) {
-  (input[0][i].charCodeAt() - "a".charCodeAt() + 1) * 31 ** i;
+  sum += (input[0][i].charCodeAt() - "a".charCodeAt() + 1) * r;
+  r *= 31;
+  r %= m;
 }
-console.log(
-  input[0]
-    .split("")
-    .reduce(
-      (acc, cur, idx) =>
-        acc + (cur.charCodeAt() - "a".charCodeAt() + 1) * 31 ** idx,
-      0
-    )
-);
+
+console.log(sum % 1234567891);
