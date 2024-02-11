@@ -6,6 +6,8 @@ let input = fs.readFileSync(filePath).toString().trim();
 
 let n = Number(input);
 
+
+
 const isTreeSix = (num) => {
   num = String(num);
   let cnt = 0;
