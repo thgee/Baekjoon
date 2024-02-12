@@ -4,16 +4,16 @@ let input = fs.readFileSync(filePath).toString().trim();
 let n = Number(input);
 // -------------------------------------------------------------------------
 
+const DFS = (n) => {
+  if (n === 0) return 1;
+  return BigInt(n) * BigInt(DFS(n - 1));
+};
+
+let num = DFS(n);
 let cnt = 0;
-
-
-
-for (let i = 1; i <= n; i++) {
-  let num = i;
-  while (num % 5 === 0) {
-    cnt++;
-    num /= 5;
-  }
+num = num.toString();
+for (let i = num.length - 1; ; i--) {
+  if (num[i] !== "0") break;
+  cnt++;
 }
-
 console.log(cnt);
