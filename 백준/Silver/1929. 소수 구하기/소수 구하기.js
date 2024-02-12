@@ -6,6 +6,7 @@ let [n, m] = input;
 
 // ------------------------------------------------------------------
 
+
 const isPrime = (num) => {
   for (let i = 2; i <= Number.parseInt(Math.sqrt(num)); i++) {
     if (num % i === 0) return false;
