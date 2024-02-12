@@ -6,6 +6,7 @@ let n = Number(arr.shift());
 
 // 키와 몸무게 둘 다 큰 경우에 한해서 랭크를 올려준다
 
+
 let rank = Array.from({ length: n }, () => 1);
 
 for (let i = 0; i < n; i++) {
