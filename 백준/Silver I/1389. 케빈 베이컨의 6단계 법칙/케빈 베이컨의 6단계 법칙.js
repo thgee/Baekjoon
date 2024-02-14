@@ -40,13 +40,13 @@ for (let i = 1; i <= N; i++) {
   BFS(i);
 }
 
-// let min = Number.MAX_SAFE_INTEGER;
-// let res = -1;
-// for (let i = 1; i < N; i++) {
-//   if (min > kevin[i]) {
-//     res = i;
-//     min = kevin[i];
-//   }
-// }
-kevin.shift();
-console.log(kevin.indexOf(Math.min(...kevin)) + 1);
+let min = Number.MAX_SAFE_INTEGER;
+let res = -1;
+for (let i = 1; i <= N; i++) {
+  if (min > kevin[i]) {
+    res = i;
+    min = kevin[i];
+  }
+}
+
+console.log(res);
