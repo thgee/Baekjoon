@@ -13,9 +13,9 @@ for (let k = 0, i = 0; k < n; k++) {
   for (let x of arr) {
     map.set(x, (map.get(x) || 0) + 1);
   }
-  let acc = 1;
-  for (let [type, cnt] of map) acc *= cnt + 1;
-  res.push(acc - 1);
+  res.push(
+    Array.from(map.values()).reduce((acc, cur) => acc * (cur + 1), 1) - 1
+  );
   i += m;
 }
 
