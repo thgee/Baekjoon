@@ -67,7 +67,6 @@ for (let i = 0; i < m; i++) {
   let [s, e, t] = arr[i];
   reverseGraph[e].push([s, t]);
 }
-
 const dijkstra = (x, G) => {
   const time = Array.from({ length: n + 1 }, () => Number.MAX_SAFE_INTEGER);
   time[x] = 0;
@@ -76,10 +75,12 @@ const dijkstra = (x, G) => {
   heap.push([x, 0]);
   while (heap.n > 0) {
     let [v, t] = heap.pop();
+    if (isVisit[v]) continue;
+    isVisit[v] = true;
     for (let [nv, nt] of G[v]) {
-      if (time[v] + nt < time[nv]) {
-        time[nv] = time[v] + nt;
-        heap.push([nv, nt]);
+      if (!isVisit[nv] && t + nt < time[nv]) {
+        time[nv] = t + nt;
+        heap.push([nv, time[nv]]);
       }
     }
   }
@@ -92,4 +93,4 @@ let res = Array.from({ length: n + 1 }, () => 0);
 let res1 = dijkstra(x, graph);
 let res2 = dijkstra(x, reverseGraph).map((it, idx) => it + res[idx]);
 for (let i = 1; i <= n; i++) res[i] += res1[i] + res2[i];
-console.log(Math.max(...res.filter((it, idx) => idx !== 0)));
+console.log(Math.max(...res));
