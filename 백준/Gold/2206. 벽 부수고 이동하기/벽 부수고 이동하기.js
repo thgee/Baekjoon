@@ -2,37 +2,22 @@ let fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let arr = fs.readFileSync(filePath).toString().trim().split("\n");
 
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
-    this.prev = null;
-  }
-}
 class Queue {
-  constructor(data) {
-    this.head = new Node();
-    this.tail = new Node();
-    this.head.next = this.tail;
-    this.tail.prev = this.head;
+  constructor() {
+    this.data = [];
+    this.head = 0;
+    this.tail = 0;
     this.length = 0;
   }
 
   push(data) {
-    let newNode = new Node(data);
-    newNode.next = this.tail;
-    newNode.prev = this.tail.prev;
-    newNode.next.prev = newNode;
-    newNode.prev.next = newNode;
+    this.data[this.tail++] = data;
     this.length++;
   }
 
   shift() {
-    let returnData = this.head.next.data;
-    this.head.next.next.prev = this.head;
-    this.head.next = this.head.next.next;
     this.length--;
-    return returnData;
+    return this.data[this.head++];
   }
 }
 
