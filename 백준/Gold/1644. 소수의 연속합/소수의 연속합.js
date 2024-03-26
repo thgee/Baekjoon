@@ -7,6 +7,7 @@ let arr = fs.readFileSync(filePath).toString().trim();
 
 const MAX = 4000000;
 const N = Number(arr);
+const primeCheck = Array.from({ length: MAX + 1 }, () => true);
 const prime = [];
 
 const isPrime = (n) => {
@@ -17,8 +18,15 @@ const isPrime = (n) => {
   return true;
 };
 
+for (let i = 2; i <= Math.sqrt(MAX); i++) {
+  if (!primeCheck[i]) continue;
+  for (let j = i * 2; j <= MAX; j += i) {
+    primeCheck[j] = false;
+  }
+}
+
 for (let i = 2; i <= MAX; i++) {
-  if (isPrime(i)) prime.push(i);
+  if (primeCheck[i]) prime.push(i);
 }
 
 let l = 0,
