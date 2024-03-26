@@ -1,31 +1,22 @@
-// 4,000,000 까지 에라스토테네스의 채로 소수 배열 만들기
+// N까지 에라스토테네스의 채로 소수 배열 만들기
 // 투포인터로 배열 탐색, 합이 N보다 작으면 r 증가, N보다 크면 l 증가, N과 같으면 res++
 
 let fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let arr = fs.readFileSync(filePath).toString().trim();
 
-const MAX = 4000000;
 const N = Number(arr);
-const primeCheck = Array.from({ length: MAX + 1 }, () => true);
+const primeCheck = Array.from({ length: N + 1 }, () => true);
 const prime = [];
 
-const isPrime = (n) => {
-  if (n === 1) return false;
-  for (let i = 2; i <= Math.sqrt(n); i++) {
-    if (n % i === 0) return false;
-  }
-  return true;
-};
-
-for (let i = 2; i <= Math.sqrt(MAX); i++) {
+for (let i = 2; i <= Math.sqrt(N); i++) {
   if (!primeCheck[i]) continue;
-  for (let j = i * 2; j <= MAX; j += i) {
+  for (let j = i * 2; j <= N; j += i) {
     primeCheck[j] = false;
   }
 }
 
-for (let i = 2; i <= MAX; i++) {
+for (let i = 2; i <= N; i++) {
   if (primeCheck[i]) prime.push(i);
 }
 
@@ -35,10 +26,7 @@ let res = 0;
 
 let sum = 2;
 while (r < prime.length) {
-  if (N < prime[r]) break;
   if (N === sum) {
-    tmp = "";
-    for (let i = l; i <= r; i++) tmp += prime[i] + " ";
     res++;
     sum -= prime[l++];
     sum += prime[++r];
