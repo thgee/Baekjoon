@@ -56,15 +56,18 @@ const DFS = (cnt) => {
             ny = y + dy * 2;
 
           // 벽이면 점프못함
-          if (nx <= 0 || nx >= N || ny <= 0 || ny >= N - 1) continue;
-          // 밟은 돌 없으면 점프 못함
+          if (nx <= 0 || nx >= N - 1 || ny <= 0 || ny >= N - 1) continue;
+          // 밟을 돌 없으면 점프 못함
           if (arr[tx][ty] !== 2) continue;
+          if (arr[nx][ny] === 2) continue;
 
           // 점프 !
           arr[x][y] = 0;
           arr[tx][ty] = 0;
           arr[nx][ny] = 2;
           DFS(cnt - 1);
+
+          if (flag) return;
 
           // 백트래킹
           arr[tx][ty] = 2;
