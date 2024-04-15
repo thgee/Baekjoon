@@ -21,7 +21,7 @@ arr.sort((n, p) => n - p);
 let min = Number.MAX_SAFE_INTEGER;
 let res = [];
 for (let i = 0; i < N; i++) {
-  let l = 0,
+  let l = i + 1,
     r = N - 1;
 
   while (1) {
